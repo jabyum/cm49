@@ -12,7 +12,7 @@ class User(Base):
     email = Column(String, nullable=False, unique=True)
     user_city = Column(String, nullable=True)
     password = Column(String, nullable=False)
-    birthday = Column(Date, nullable=True)
+    birthday = Column(String, nullable=True)
     reg_date = Column(DateTime)
 class Hashtag(Base):
     __tablename__ = "hashtags"

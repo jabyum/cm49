@@ -9,7 +9,7 @@ def register_user_db(name, email, phone_number,
     checker = check_user_db(name, phone_number, email)
     if checker == True:
         new_user = User(name=name, email=email, phone_number=phone_number,
-                        password=password, user_city=user_city, birthday=birthday)
+                        password=password, user_city=user_city, birthday=birthday, reg_date=datetime.now())
         db.add(new_user)
         db.commit()
         return new_user.id
@@ -53,16 +53,39 @@ def profile_info_db(user_id):
     return False
 
 # изменение данных
+# change data
 def change_user_data_db(user_id, changeable_info, new_data):
     db = next(get_db())
     user = db.query(User).filter_by(id=user_id).first()
-    if changeable_info == "name":
-        user.name = new_data
-        db.commit()
-        return True
-    # TODO дописать изменения остальной информации, кроме id, reg_date
-    db.commit()
-    return "Получилось или не получилось"
+    if user:
+        try:
+            if changeable_info == "name":
+                user.name = new_data
+                db.commit()
+                return True
+            elif changeable_info == "phone_number":
+                user.phone_number = new_data
+                db.commit()
+                return True
+            elif changeable_info == "email":
+                user.email = new_data
+                db.commit()
+                return True
+            elif changeable_info == "user_city":
+                user.user_city = new_data
+                db.commit()
+                return True
+            elif changeable_info == "password":
+                user.password = new_data
+                db.commit()
+                return True
+            elif changeable_info == "birthday":
+                user.birthday = new_data
+                db.commit()
+                return True
+        except:
+            return "Unfortunately at this moment change of data unvailable"
+    return False
 
 
 

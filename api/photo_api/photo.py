@@ -14,5 +14,5 @@ async def add_photo(post_id: int,
             photo.write(photo_to_save)
             add_photo_db(post_id, f"database/photos/photo_{post_id}.jpg")
         return {"status":1, "message": "Фото успешно загружено"}
-    return {"status":0, "message": "Фото не загружено"}
+    return {"status": 0, "message": "Фото не загружено"}
 
