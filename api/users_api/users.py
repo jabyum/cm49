@@ -33,8 +33,28 @@ async def register_user(user_model: User):
 
     return {"status": 0, "message": "Invalid email or phone"}
 
+@users_router.get("/api/user")
+async def get_user(user_id: int):
+    exact_user = profile_info_db(user_id)
+    if exact_user:
+        return {"status": 1, "message": exact_user}
+    return {"status": 0, "message": "Пользователь не найден"}
 
+# вход в аккаунт
+@users_router.post("/api/login")
+async def login_user(login: str, password: str):
+    checking = check_user_password_db(login=login, password=password)
+    if checking:
+        return {"status": 1, "message": checking}
+    return {"status": 0, "message": "Ошибка входа"}
 
+# изменение данных
+@users_router.put("/api/change_profile")
+async def change_user_profile(user_id: int, changeable_info: str, new_data: str):
+    data = change_user_data_db(user_id=user_id, changeable_info=changeable_info, new_data=new_data)
+    if data:
+        return {"status": 1, "message": "Данные успешно изменены"}
+    return {"status": 0, "message": "Не удалось изменить информацию"}
 
 
 

@@ -34,15 +34,14 @@ def check_user_password_db(login, password):
     db = next(get_db())
     user_by_phone = db.query(User).filter_by(phone_number=login).first()
     user_by_email = db.query(User).filter_by(email=login).first()
-    if not user_by_email or not user_by_phone:
-        return "Неправильная почта или номер"
-    elif user_by_phone:
+    print(login, user_by_phone, user_by_email)
+    if user_by_phone:
         if user_by_phone.password == password:
             return user_by_phone.id
     elif user_by_email:
         if user_by_email.password == password:
             return user_by_email.id
-    return 'Неправильный пароль'
+    return 'Неправильные данные'
 
 # получение данных о пользователе
 def profile_info_db(user_id):

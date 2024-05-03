@@ -8,16 +8,16 @@ def get_all_or_exact_post_db(post_id):
     if post_id:
         exact_post = db.query(UserPost).filter_by(id=post_id).first()
         return exact_post
-    else:
+    elif post_id == 0:
         all_posts = db.query(UserPost).all()
-        return all_posts
+        return [i for i in all_posts]
 
 # Redacting a post
 def change_post_text(post_id, new_text):
     db = next(get_db())
     post_to_edit = db.query(UserPost).filter_by(id=post_id).first()
     if post_to_edit:
-        post_to_edit.text = new_text
+        post_to_edit.main_text = new_text
         db.commit()
         return True
     return False
@@ -35,7 +35,7 @@ def delete_post_db(post_id):
 # Publishing a post
 def public_post_db(user_id, main_text, hashtag=None):
     db = next(get_db())
-    new_post = UserPost(user_id=user_id, text=main_text, created_at=datetime.now(), hashtag=hashtag)
+    new_post = UserPost(user_id=user_id, main_text=main_text, reg_date=datetime.now(), hashtag=hashtag)
     db.add(new_post)
     db.commit()
     return True
