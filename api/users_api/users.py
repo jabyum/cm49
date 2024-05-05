@@ -56,6 +56,12 @@ async def change_user_profile(user_id: int, changeable_info: str, new_data: str)
         return {"status": 1, "message": "Данные успешно изменены"}
     return {"status": 0, "message": "Не удалось изменить информацию"}
 
-
+@users_router.delete("/api/delete_user")
+async def delete_user_post(user_id: int):
+    try:
+        delete_user_db(user_id)
+        return {"status": 1, "message": "Юзер удален"}
+    except:
+        return {"status": 0, "message": "Не удалось удалить юзера"}
 
 

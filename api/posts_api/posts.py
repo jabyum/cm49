@@ -14,7 +14,7 @@ async def add_post(user_id: int, main_text: str, hashtag: str = None):
     return {"status": 0, "message": "Не удалось создать пост"}
 # получить все или определенный пост
 @posts_router.get("/api/posts")
-async def get_all_or_exact_post(post_id=0):
+async def get_all_or_exact_post(post_id: int =0):
     post = get_all_or_exact_post_db(post_id)
     if post:
         return {"status": 1, "message": post}

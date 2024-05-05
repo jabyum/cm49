@@ -3,9 +3,9 @@ from database.models import UserPost, Comment, Hashtag, PostPhoto
 from datetime import datetime
 
 # Getting data about a post
-def get_all_or_exact_post_db(post_id):
+def get_all_or_exact_post_db(post_id: int):
     db = next(get_db())
-    if post_id:
+    if post_id != 0:
         exact_post = db.query(UserPost).filter_by(id=post_id).first()
         return exact_post
     elif post_id == 0:

@@ -85,6 +85,16 @@ def change_user_data_db(user_id, changeable_info, new_data):
         except:
             return "Unfortunately at this moment change of data unvailable"
     return False
+# удаление юзера
 
+def delete_user_db(user_id):
+    db = next(get_db())
+    user_to_delete = db.query(User).filter_by(id=user_id).first()
+    if user_to_delete:
+        db.delete(user_to_delete)
+        db.commit()
+        return True
+
+    return False
 
 
