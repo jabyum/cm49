@@ -4,5 +4,6 @@ uvicorn
 python-multipart
 regex
 psycopg2-binary
+pydantic
 # psycopg2 - для винды
 # psycopg2-binary - для мака и линукс (на сервере будет линукс)
