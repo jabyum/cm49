@@ -43,7 +43,7 @@ def public_post_db(user_id, main_text, hashtag=None):
 # Adding a comment
 def public_comment_db(user_id, post_id, text):
     db = next(get_db())
-    new_comment = Comment(user_id=user_id, post_id=post_id, text=text, created_at=datetime.now())
+    new_comment = Comment(user_id=user_id, post_id=post_id, text=text, reg_date=datetime.now())
     db.add(new_comment)
     db.commit()
     return True

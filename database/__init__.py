@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 # создаем ссылку для подключения/создания базы данных
-# SQLALCHEMY_DATABASE_URL = "sqlite:///data.db"
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:admin@localhost/social_media49"
+SQLALCHEMY_DATABASE_URL = "sqlite:///data.db"
+# SQLALCHEMY_DATABASE_URL = "postgresql://postgres:admin@localhost/social_media49"
                                         #login   пароль  хост    название бд
 # создаем движок для работы базы данных
 engine = create_engine(SQLALCHEMY_DATABASE_URL)

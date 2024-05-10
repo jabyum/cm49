@@ -20,6 +20,7 @@ class Hashtag(Base):
     id = Column(Integer, autoincrement=True, primary_key=True)
     hashtag_name = Column(String, nullable=False, unique=True)
     reg_date = Column(DateTime)
+
 class UserPost(Base):
     __tablename__ = "user_posts"
     id = Column(Integer, autoincrement=True, primary_key=True)
@@ -31,6 +32,7 @@ class UserPost(Base):
     user_fk = relationship("User", lazy="subquery", back_populates="posts", cascade="all, delete",
                            passive_deletes=True)
     hashtag_fk = relationship("Hashtag", lazy="subquery")
+
 class PostPhoto(Base):
     __tablename__ = "post_photos"
     id = Column(Integer, autoincrement=True, primary_key=True)
@@ -39,9 +41,6 @@ class PostPhoto(Base):
     reg_date = Column(DateTime)
 
     post_fk = relationship(UserPost, lazy="subquery")
-
-
-
 
 
 class Comment(Base):
